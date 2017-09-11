@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -78,13 +77,8 @@ namespace Game_Snake.Classes
             Point point;
             do
             {
-                RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
-                byte[] randomNumber1 = new byte[1];
-                byte[] randomNumber2 = new byte[1];
-                new RNGCryptoServiceProvider().GetBytes(randomNumber1);
-                new RNGCryptoServiceProvider().GetBytes(randomNumber2);
-                int num1 = randomNumber1[0] % 30;
-                int num2 = randomNumber2[0] % 20;
+                int num1 = MyRandom.RandomInt(30);
+                int num2 = MyRandom.RandomInt(20);
                 point = new Point(num1*size.Width, num2*size.Height);
             } while (body.Contains(point));
             flag_target = true;

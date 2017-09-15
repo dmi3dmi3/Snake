@@ -8,19 +8,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Game_Snake.Classes;
+using Menu_Snake;
 
 namespace Game_Snake
 {
-    public partial class Form : System.Windows.Forms.Form
+    public partial class GameForm : System.Windows.Forms.Form
     {
         Snake snake;
-        
-        public Form()
+        public event EventHandler BackToMenu;
+
+        public GameForm()
         {
             InitializeComponent();
-            snake = new Snake(pnlGameBoard.Size.Width, pnlGameBoard.Size.Height);
-            timer.Start();
+            snake = new Snake(pnlGameBoard.Size.Width, pnlGameBoard.Size.Height);           
             snake.Lose += GameOver;
+            timer.Start();
+        }
+
+        public void Start()
+        {
+            snake.Restart(pnlGameBoard.Size.Width, pnlGameBoard.Size.Height);
+            timer.Start();
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -111,37 +119,7 @@ namespace Game_Snake
                         }
                     }
                 }
-                /*
-                if (snake.body.Contains(new Point(p.X,p.Y - snake.size.Height)))//Up
-                {
-                    g.FillRectangle(Brushes.Black, new Rectangle(
-                        Point.Add(p, new Size(1, 0)), 
-                        new Size(snake.size.Width - 2, 1))
-                        );
-                }
-                if (snake.body.Contains(new Point(p.X + snake.size.Width, p.Y)))//Right
-                {
-                    g.FillRectangle(Brushes.Black, new Rectangle(
-                        Point.Add(p,new Size(snake.size.Width - 1, 1)),
-                        new Size(1, snake.size.Height - 2))
-                        );
-                }
-                if (snake.body.Contains(new Point(p.X, p.Y + snake.size.Height)))//Down
-                {
-                    g.FillRectangle(Brushes.Black, new Rectangle(
-                        Point.Add(p, new Size(1, snake.size.Height - 1)),
-                        new Size(snake.size.Width - 2, 1))
-                        );
-                }
-                if (snake.body.Contains(new Point(p.X - snake.size.Width, p.Y)))//Left
-                {
-                    g.FillRectangle(Brushes.Black, new Rectangle(
-                        Point.Add(p, new Size(0, 1)),
-                        new Size(1, snake.size.Height - 2))
-                        );
-                }*/
-       
-
+                
             g.FillEllipse(Brushes.Black, new Rectangle(Point.Add(snake.target, new Size(1, 1)), Size.Subtract(snake.size, new Size(2, 2))));
         }
 
@@ -202,11 +180,7 @@ namespace Game_Snake
         {
             timer.Stop();
             snake.flag_GameOver = true;
-        }
-
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
+            BackToMenu(this, new EventArgs());
         }
 
         private void restartToolStripMenuItem_Click(object sender, EventArgs e)
@@ -214,5 +188,6 @@ namespace Game_Snake
             snake.Restart(pnlGameBoard.Size.Width, pnlGameBoard.Size.Height);
             timer.Start();
         }
+
     }
 }

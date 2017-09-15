@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Game_Snake
+namespace Menu_Snake
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace Game_Snake
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form());
+            Application.Run(new MenuForm());
         }
     }
 }

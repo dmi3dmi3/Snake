@@ -53,6 +53,12 @@ namespace Game_Snake.Classes
                     point.Offset(-size.Width, 0);
                     break;
             }
+             
+            if (point.X < 0) { point.X = size.Width * 29; }
+            if (point.X > size.Width * 29) { point.X = 0; }
+            if (point.Y < 0) { point.Y = size.Height * 19; }
+            if (point.Y > size.Height * 19) { point.Y = 0; }
+
             if (body.Contains(point))
             {
                 Lose(this, new EventArgs());

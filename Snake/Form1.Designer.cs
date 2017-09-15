@@ -1,6 +1,6 @@
 ﻿namespace Game_Snake
 {
-    partial class Form
+    partial class GameForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -29,23 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form));
-            this.pnlGameBoard = new System.Windows.Forms.Panel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameForm));
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnlGameBoard = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pnlGameBoard
-            // 
-            this.pnlGameBoard.BackColor = System.Drawing.SystemColors.Window;
-            this.pnlGameBoard.Location = new System.Drawing.Point(20, 30);
-            this.pnlGameBoard.Name = "pnlGameBoard";
-            this.pnlGameBoard.Size = new System.Drawing.Size(600, 400);
-            this.pnlGameBoard.TabIndex = 0;
             // 
             // timer
             // 
@@ -65,8 +56,7 @@
             // menuToolStripMenuItem
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.restartToolStripMenuItem,
-            this.closeToolStripMenuItem});
+            this.restartToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
@@ -79,15 +69,15 @@
             this.restartToolStripMenuItem.Text = "Restart";
             this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click);
             // 
-            // closeToolStripMenuItem
+            // pnlGameBoard
             // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.closeToolStripMenuItem.Text = "Close";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            this.pnlGameBoard.BackColor = System.Drawing.SystemColors.Window;
+            this.pnlGameBoard.Location = new System.Drawing.Point(20, 30);
+            this.pnlGameBoard.Name = "pnlGameBoard";
+            this.pnlGameBoard.Size = new System.Drawing.Size(600, 400);
+            this.pnlGameBoard.TabIndex = 0;
             // 
-            // Form
+            // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -95,7 +85,7 @@
             this.Controls.Add(this.pnlGameBoard);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form";
+            this.Name = "GameForm";
             this.Text = "Snake";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
@@ -107,13 +97,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel pnlGameBoard;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restartToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.Panel pnlGameBoard;
     }
 }
 

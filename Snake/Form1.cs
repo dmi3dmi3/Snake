@@ -21,13 +21,13 @@ namespace Game_Snake
         {
             InitializeComponent();
             snake = new Snake(pnlGameBoard.Size.Width, pnlGameBoard.Size.Height);           
-            snake.Lose += GameOver;
-            timer.Start();
         }
 
-        public void Start()
+        public void Start(int v)
         {
-            snake.Restart(pnlGameBoard.Size.Width, pnlGameBoard.Size.Height);
+            snake = new Snake(pnlGameBoard.Size.Width, pnlGameBoard.Size.Height);
+            snake.Lose += GameOver;
+            timer.Interval = v * 100;
             timer.Start();
         }
 
@@ -128,7 +128,11 @@ namespace Game_Snake
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
             if (snake.flag_GameOver)
+            {
+                BackToMenu(this, new EventArgs());
                 return;
+            }
+
             if (e.KeyCode == Keys.Space)
             {
                 if (timer.Enabled)
@@ -180,7 +184,7 @@ namespace Game_Snake
         {
             timer.Stop();
             snake.flag_GameOver = true;
-            BackToMenu(this, new EventArgs());
+           
         }
 
         private void restartToolStripMenuItem_Click(object sender, EventArgs e)
@@ -189,5 +193,11 @@ namespace Game_Snake
             timer.Start();
         }
 
+        private void GameForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            timer.Stop();
+            snake.flag_GameOver = true;
+            BackToMenu(this, new EventArgs());
+        }
     }
 }

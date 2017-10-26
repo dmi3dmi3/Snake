@@ -20,21 +20,45 @@ namespace Menu_Snake
         {
             InitializeComponent();
             form.BackToMenu += Returning;
+            VelChooseBox.SelectedIndex = 0;
         }
 
         private void Returning(object sender, EventArgs e)
         {
             Thread.Sleep(300);
+            if (form.IsAccessible)
+            {
+                form.Close();
+            }
             Show();
-            form.Hide();
-            
         }
 
         private void StartBtn_Click(object sender, EventArgs e)
         {
-            form.Show();
-            form.Start();
-            Hide();
+            int v;
+            if (VelChooseBox.SelectedItem != null)
+            {
+                switch (VelChooseBox.SelectedItem.ToString())
+                {
+                    case "1":
+                        form.Start(5);
+                        break;
+                    case "2":
+                        form.Start(4);
+                        break;
+                    case "3":
+                        form.Start(3);
+                        break;
+                    case "4":
+                        form.Start(2);
+                        break;
+                    case "5":
+                        form.Start(1);
+                        break;
+                }
+                form.Show();
+                Hide();
+            }
         }
 
         private void CloseBtn_Click(object sender, EventArgs e)

@@ -20,6 +20,8 @@ namespace Game_Snake.Classes
         public enum Sides { Up, Right, Down, Left}
         public Sides side;
         public Sides g_side;
+        public int vel = 1;
+        public int score = 0;
 
         public Snake(int x, int y)
         {
@@ -65,11 +67,10 @@ namespace Game_Snake.Classes
                 return;
             }
             if (!(point == target))
-            {
                 body.Dequeue();
-            }
             else
             {
+                score += vel;
                 flag_target = false;
             }
             
